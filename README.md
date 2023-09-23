@@ -232,3 +232,41 @@ This file **should not be committed** to your VCS. Accomplished by adding line t
 #### Terraform Directory
 
 `.terraform` directory contains binaries of terraform providers.
+
+## Issues with Terraform Cloud Login and Gitpod Workspace
+
+When attempting to run `terraform login` in bash it will launch a wiswig view to generate a token. However this does not work as expected in Gitpod VSCode browser.
+
+In the wiswig view, enter `p` to display the output and follow link: https://app.terraform.io/app/settings/tokens?source=terraform-login. Copy the token and return to Gitpod. Then enter `q` to quit wiswig and paste the token value into the prompt. 
+
+Run: `cat /home/gitpod/.terraform.d/credentials.tfrc.json` to verify the file was created and contains the auth tokens.
+
+Alternatively, if the previous steps did not create that file:
+
+Follow this link:
+
+```
+https://app.terraform.io/app/settings/tokens?source=terraform-login
+```
+
+Then create the file manually and open the file: 
+
+```sh
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+
+Paste the following code into the file (include your copied token in the file):
+
+```sh
+{
+  "credentials": {
+    "app.terraform.io": {
+      "token": "INSERT-TOKEN-HERE"
+    }
+  }
+}
+```
+
+
+
