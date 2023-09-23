@@ -149,7 +149,7 @@ All future workspaces launched will set the new env vars for all bash terminals 
 
 You can also set env vars in `.gitpod.yml` but this should only contain non-sensative env vars.
 
-### AWS CLI Installation
+## Install the AWS CLI
 
 AWS CLI is installed for this project via the bash script [`./bin/isntall_aws_cli`](./bin/install_aws_cli)
 
@@ -196,7 +196,6 @@ At the start of every new Terraform project, run `terraform init`. This will dow
 
 #### Terraform Plan
 
-
 `terraform plan`
 
 This generates a changeset about the current state of the infrastructure and what will be changed.
@@ -209,7 +208,14 @@ Output this changeset (plan) to be passed to an apply, but this is not necessary
 
 This will run a plan and pass the changeset to be executed. Apply prompts yes or no. Automatically approve apply with `terraform apply --auto-approve`.
 
-### Terraform Lock Files
+#### Terraform Destroy
+
+`terraform destroy`
+This will destroy resources.
+
+This command also accepts the auto approve flag eg. `terraform destroy --auto-approve`
+
+#### Terraform Lock Files
 
 `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project.
 
@@ -223,6 +229,6 @@ This file **should not be committed** to your VCS. Accomplished by adding line t
 
 `.terraform.tfstate.backup` is the previous state file state.
 
-### Terraform Directory
+#### Terraform Directory
 
 `.terraform` directory contains binaries of terraform providers.
