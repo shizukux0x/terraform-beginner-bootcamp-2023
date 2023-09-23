@@ -268,5 +268,6 @@ Paste the following code into the file (include your copied token in the file):
 }
 ```
 
+Automated this workaround with the following bash script [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
 
-
+Created 
