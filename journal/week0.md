@@ -2,21 +2,21 @@
 # Terraform Beginner Bootcamp 2023 - Week0
 
 ## Table of Contents
-- [Semantic Versioning :mage:](#semantic-versioning--mage-)
+- [Semantic Versioning :mage:](#semantic-versioning-mage)
 - [Install the Terraform CLI](#install-the-terraform-cli)
   * [Considerations with the Terraform CLI changes](#considerations-with-the-terraform-cli-changes)
   * [Considerations for Linux Distribution](#considerations-for-linux-distribution)
   * [Refactoring into Bash Scripts](#refactoring-into-bash-scripts)
-  * [Shebang](#shebang)
+    + [Shebang](#shebang)
     + [Execution Considerations](#execution-considerations)
     + [Linux Permissions Considerations](#linux-permissions-considerations)
-  * [Github Lifecycle (Before, Initi, Command)](#github-lifecycle--before--initi--command-)
-  * [Working Env Vars](#working-env-vars)
-    + [env command](#env-command)
-    + [Setting and Unsetting Env Vars](#setting-and-unsetting-env-vars)
-    + [Printing Vars](#printing-vars)
-    + [Scoping of Env Vars](#scoping-of-env-vars)
-    + [Setting Persistant Env Vars in Gitpod](#setting-persistant-env-vars-in-gitpod)
+  * [GitPod Lifecycle (Before, Init, Command)](#gitpod-lifecycle-before-init-command)
+- [Working Env Vars](#working-env-vars)
+  * [env command](#env-command)
+  * [Setting and Unsetting Env Vars](#setting-and-unsetting-env-vars)
+  * [Printing Vars](#printing-vars)
+  * [Scoping of Env Vars](#scoping-of-env-vars)
+  * [Setting Persistant Env Vars in Gitpod](#setting-persistant-env-vars-in-gitpod)
 - [Install the AWS CLI](#install-the-aws-cli)
 - [Terraform Basics](#terraform-basics)
   * [Terraform Registry](#terraform-registry)
@@ -87,7 +87,7 @@ This bash script is located here: [./bin/install_terraform_cli](./bin/install_te
 - This will allow us an easier to debug and execute manually Terraform CLI install
 - This will allow better portability for other projects that need to install Terraform CLI.
 
-### Shebang
+#### Shebang
 
 A Shebang (pronounced Sha-bang) tells the bash script what program will interpret the script. eg. `#!/bin/bash`
 
@@ -123,21 +123,21 @@ chmod u+x ./bin/install_terraform_cli
 
 https://en.wikipedia.org/wiki/Chmod
 
-### Github Lifecycle (Before, Initi, Command)
+### GitPod Lifecycle (Before, Init, Command)
 
 We need to be careful when using the Init because it will not rerun if we restart an existing workspace.
 
 https://www.gitpod.io/docs/configure/workspaces/tasks
 
-### Working Env Vars
+## Working Env Vars
 
-#### env command
+### env command
 
 We can list out all Enviroment Variables (Env Vars) using the `env` command
 
 We can filter specific env vars using grep eg. `env | grep AWS_`
 
-#### Setting and Unsetting Env Vars
+### Setting and Unsetting Env Vars
 
 In the terminal we can set using `export HELLO='world'`
 
@@ -159,17 +159,17 @@ HELLO='world'
 echo $HELLO
 ```
 
-#### Printing Vars
+### Printing Vars
 
 We can print an env var using echo eg. `echo $HELLO`
 
-#### Scoping of Env Vars
+### Scoping of Env Vars
 
 When you open up new bash terminals in VSCode it will nto be aware of env vars that you have set in another window.
 
 To set Env Vars to persist across all future bash terminals that are open you need to set env vars in your bash profile. eg. `.bash_profile`
 
-#### Setting Persistant Env Vars in Gitpod
+### Setting Persistant Env Vars in Gitpod
 
 We can set env vars as persistent in gitpod by storing them in Gitpod Secrets Storage.
 
