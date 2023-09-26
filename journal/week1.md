@@ -54,3 +54,10 @@ This is the default file to load in terraform variables in bulk
 #### Order of Terraform Variables
 
 - TODO: document which terraform variables take precedent
+
+### Tagging S3 Bucket
+
+- TODO: document S3 bucket tagging
+
+Ref:
+[Resource: aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)
