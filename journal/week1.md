@@ -40,20 +40,33 @@ Use the `var` flag to set an input variable or override a variable in the tfvars
 
 #### var-file flag
 
-- TODO: document this flag
-
+The `var-file` flag overwrites workspace-specifc variables
 
 #### terraform.tfvars
 
-This is the default file to load in terraform variables in bulk
+This is the default file to load in terraform variables in bulk. 
 
 #### auto.tfvars
 
-- TODO: document this functionality for terraform cloud
+This file also contains terraform variables like **terraform.tfvars**. Files matching the format `*.auto.tfvars* are loaded automatically by Terraform for each run.
 
 #### Order of Terraform Variables
 
-- TODO: document which terraform variables take precedent
+Terraform offers multiple ways to set variables. The list below specifies how Terraform handles conflicting variables and which take precendent.
+
+  1. Command-Line Variable Flags, e.g `-var` or `-var-file`
+     - overwrite workspace-specific variables
+  3. Local Env Vars with `TF_VAR_` prefix
+     - overwrite workspace-specific and `*.auto.tfvar` file variables
+  4. Workspace-Specific Variables
+     - overwrites variable sets and variables loaded from files that share the same key, eg.                 `*.auto.tfvars` or `terraform.tfvars`.
+  6. Workspace-Scoped Variable Sets
+  7. Project-Scoped Variable Sets
+  8. Global Variable Sets
+  9. `*.auto.tfvars` Variable Files
+      - overwrites variables in `terraform.tfvars` files
+      - overwritten by variables in the Terraform Cloud workspace and command line variables.
+  11. `terraform.tfvars` Variable Files
 
 ### Tagging S3 Bucket
 
@@ -61,3 +74,7 @@ This is the default file to load in terraform variables in bulk
 
 Ref:
 [Resource: aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)
+[Customize Terraform Configuration with Variables](https://developer.hashicorp.com/terraform/tutorials/configuration-language/variables)
+[Workspace Variables](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#precedence)
+[Managing Variables](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables/managing-variables#overwrite-variable-sets)
+
