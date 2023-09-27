@@ -95,6 +95,47 @@ If an individual deletes cloud resources manually, through ClickOps.
 
 Running `terraform plan`, with cause Terraform to attempt to return the infrastructure back to the expected state by fixing Configuration Drift.
 
+### Fix Using Terraform Refresh
+
+```sh
+terraform apply -refresh-only -auto-approve
+```
+
+[Terraform Refresh](https://developer.hashicorp.com/terraform/cli/commands/refresh)
+
+## Terraform Modules
+
+### Terraform Module Structure
+
+It is recommonded to place modules in a `modules` directory when locally developing modules.
+
+### Passing Input Variables
+
+We can pass input variables to our module.
+The module has to declare the terraform variables in its own variables.
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  bucket_name = var.bucket_name
+}
+```
+
+### Modules Sources
+
+Using the source we can import a module from variable places, eg.:
+- locally
+- Github
+- Terraform Registry
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+}
+```
+
+[Modules Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
 
 **Ref:**
 
@@ -105,3 +146,4 @@ Running `terraform plan`, with cause Terraform to attempt to return the infrastr
 [Workspace Variables](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#precedence)
 
 [Managing Variables](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables/managing-variables#overwrite-variable-sets)
+
