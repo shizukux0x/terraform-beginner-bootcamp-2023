@@ -72,9 +72,13 @@ Terraform offers multiple ways to set variables. The list below specifies how Te
 
 - TODO: document S3 bucket tagging
 
-Ref:
+**Ref:**
+
 [Resource: aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)
+
 [Customize Terraform Configuration with Variables](https://developer.hashicorp.com/terraform/tutorials/configuration-language/variables)
+
 [Workspace Variables](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#precedence)
+
 [Managing Variables](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables/managing-variables#overwrite-variable-sets)
 
