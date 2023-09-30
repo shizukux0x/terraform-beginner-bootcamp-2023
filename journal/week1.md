@@ -242,6 +242,17 @@ jsonencode({"hello"="world"})
 
 [jsonencode](https://developer.hashicorp.com/terraform/language/functions/jsonencode)
 
+## Changing the Lifecycle Cycle of Resouces
+
+
+[Meta Arguments Lifecycle](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)
+
+## Terraform Data
+
+Plain data values such as Local Values and Input Variables don't have any side-effects to plan against and so they aren't valid in replace_triggered_by. You can use terraform_data's behavior of planning an action each time input changes to indirectly use a plain value to trigger replacement.
+
+[terraform_data](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
+
 **Ref:**
 
 [Resource: aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)

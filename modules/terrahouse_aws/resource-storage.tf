@@ -9,16 +9,6 @@ resource "aws_s3_bucket" "website_bucket" {
  }
 }
 
-#resource "aws_s3_bucket" "static_website" {
-#  bucket = aws_s3_bucket.website_bucket.bucket
-#  #acl    = "public-read"
-#
-#  website {
-#    index_document = "index.html"  # Set your main HTML file
-#    error_document = "error.html"  # Set your error HTML file (optional)
-#  }
-#}
-
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration
 resource "aws_s3_bucket_website_configuration" "website_configuration" {
   bucket = aws_s3_bucket.website_bucket.bucket
@@ -37,7 +27,12 @@ resource "aws_s3_object" "index_html" {
   key    = "index.html"
   source = var.index_html_filepath
   content_type = "text/html"
-  etag = filemd5(var.index_html_filepath)
+
+  etag = filemd5(var.error_html_filepath)
+  lifecycle {
+    replace_triggered_by = [ terraform_data.content_version.output ]
+    ignore_changes = [ etag ]
+  }
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
@@ -46,7 +41,11 @@ resource "aws_s3_object" "error_html" {
   key    = "error.html"
   source = var.error_html_filepath
   content_type = "text/html"
+
   etag = filemd5(var.error_html_filepath)
+  lifecycle {
+    ignore_changes = [ etag ]
+  }
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
@@ -70,4 +69,8 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
       }
     }
   })
+}
+
+resource "terraform_data" "content_version" {
+  input = var.content_version
 }
