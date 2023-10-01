@@ -253,6 +253,54 @@ Plain data values such as Local Values and Input Variables don't have any side-e
 
 [terraform_data](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
 
+## Provisioners
+
+Provisioners allow command execution on compute instances eg. an AWS CLI command.
+
+They are not recommended for use by Hashicorp because Configuration Management tools such as Ansible are a better fit, but the functionality exists.
+
+[Provisioners](https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax)
+
+### Local-exec
+
+This executes commands on the machine running the terraform commands eg. a `plan apply`.
+
+```tf
+resource "aws_instance" "web" {
+  # ...
+
+  provisioner "local-exec" {
+    command = "echo The server's IP address is ${self.private_ip}"
+  }
+}
+```
+
+### Remote-exec
+
+This will execute commands on a machine that is targeted. Credentials must be provided to gain access to the remote machine, eg. SSH.
+
+```tf
+resource "aws_instance" "web" {
+  # ...
+
+  # Establishes connection to be used by all
+  # generic remote provisioners (i.e. file/remote-exec)
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = var.root_password
+    host     = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "puppet apply",
+      "consul join ${aws_instance.web.private_ip}",
+    ]
+  }
+}
+```
+
 **Ref:**
 
 [Resource: aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)
