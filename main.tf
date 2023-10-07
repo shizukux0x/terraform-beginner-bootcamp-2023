@@ -7,14 +7,14 @@ terraform {
 #        name = "terra-house-1"
 #    }
 #  }
-#  cloud {
-#      organizations = "shizukux0x"
-#
-#      workspaces {
-#        name = "terra-house-1"
-#      }
-#  }
-#
+  cloud {
+      organization = "shizukux0x"
+
+      workspaces {
+        name = "terraform-cloud"
+      }
+  }
+
 }
 
 module "terrahouse_aws" {
