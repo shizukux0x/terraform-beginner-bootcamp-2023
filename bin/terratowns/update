@@ -31,7 +31,7 @@ http://localhost:4567/api/u/$user_uuid/homes/$house_uuid)
 # Extract headers
 HEADERS=$(echo "$RESPONSE" | awk 'BEGIN {RS="\r\n\r\n"; ORS=RS} NR==1 {print}')
 
-# Extract body
+# Extract bodyhome
 BODY=$(echo "$RESPONSE" | awk 'BEGIN {RS="\r\n\r\n"; ORS=RS} NR==2 {print}')
 
 # Check if Content-Type indicates JSON and use jq if so
