@@ -33,6 +33,8 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+terraform-provider-terratowns/terraform-provider-terratowns_v*
+
 dracula-pro.vsix
 
 /workspace/terraform-beginner-bootcamp-2023/public/assests/2.jpg
