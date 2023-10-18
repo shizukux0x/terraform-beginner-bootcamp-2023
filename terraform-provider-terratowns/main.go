@@ -66,6 +66,7 @@ func Provider() *schema.Provider {
 }
 
 func validateUUID(v interface{}, k string) (ws []string, errors []error) {
+
 	log.Print("validateUUID:start") 
 	value := v.(string)
 	if _,err := uuid.Parse(value); err != nil {
@@ -128,6 +129,7 @@ func Resource() *schema.Resource{
 }
 
 func resourceHouseCreate (ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
+
 	log.Print("resourceHouseCreate:start")
 	var diags diag.Diagnostics
 
@@ -187,6 +189,7 @@ func resourceHouseCreate (ctx context.Context, d *schema.ResourceData, m interfa
 }
 
 func resourceHouseRead (ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
+
 	log.Print("resourceHouseRead:start")
 	var diags diag.Diagnostics
 
@@ -235,11 +238,13 @@ func resourceHouseRead (ctx context.Context, d *schema.ResourceData, m interface
 	}
 
 	log.Print("resourceHouseRead:end")
+
 	return diags
 
 }
 
 func resourceHouseUpdate (ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
+
 	log.Print("resourceHouseUpdate:start")
 	var diags diag.Diagnostics
 
@@ -291,6 +296,7 @@ func resourceHouseUpdate (ctx context.Context, d *schema.ResourceData, m interfa
 }
 
 func resourceHouseDelete (ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
+
 	log.Print("resourceHouseDelete:start")
 	var diags diag.Diagnostics
 
@@ -324,5 +330,6 @@ func resourceHouseDelete (ctx context.Context, d *schema.ResourceData, m interfa
 
 	d.SetId("")
 	log.Print("resourceHouseDelete:end")
+
 	return diags
 }
